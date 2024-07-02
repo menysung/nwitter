@@ -1,4 +1,7 @@
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { auth } from "../firebase";
 import "./CreateAccount.css";
 
 export default function CreateAccount() {
@@ -6,7 +9,8 @@ export default function CreateAccount() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error] = useState("");
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -19,18 +23,23 @@ export default function CreateAccount() {
     }
   };
 
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
+    if (isLoading || name === "" || email === "" || password === "") return;
     try {
-      console.log("Name:", name);
-      console.log("Email:", email);
-      console.log("Password:", password);
-      // create an account
-      // set the name of the user.
-      // redirect to the home page
+      setLoading(true);
+      const credentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(credentials.user);
+      await updateProfile(credentials.user, {
+        displayName: name,
+      });
+      navigate("/");
     } catch (e) {
-      setError("일치하는 이메일 또는 패스워드가 없습니다. 다시 확인해주세요");
+      // setError("일치하는 이메일 또는 패스워드가 없습니다. 다시 확인해주세요");
     } finally {
       setLoading(false);
     }
@@ -38,7 +47,7 @@ export default function CreateAccount() {
 
   return (
     <div className="wrapper">
-      <h1 className="title">Log into 𝕏</h1>
+      <h1 className="title">Join 𝕏</h1>
       <form className="form" onSubmit={onSubmit}>
         <input
           onChange={onChange}

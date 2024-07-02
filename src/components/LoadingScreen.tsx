@@ -1,4 +1,4 @@
-import "./LoadingScreen.css"; // CSS 파일을 import
+import "./LoadingScreen.css";
 
 export default function LoadingScreen() {
   return (
