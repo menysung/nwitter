@@ -1,5 +1,5 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
-import { styled } from "styled-components";
+import styled from "styled-components";
 import { auth } from "../firebase";
 
 // SVG 이미지 파일 import
@@ -33,14 +33,13 @@ const MenuItem = styled.div`
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  svg {
+  img {
     width: 30px;
-    fill: white;
   }
   &.log-out {
     border-color: tomato;
-    svg {
-      fill: tomato;
+    img {
+      filter: invert(50%) sepia(100%) saturate(5000%) hue-rotate(-10deg);
     }
   }
 `;
