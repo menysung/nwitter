@@ -2,6 +2,7 @@ import { FirebaseError } from "firebase/app";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import GithubButton from "../components/GithubButton";
 import { auth } from "../firebase";
 import "./Login.css";
 
@@ -105,6 +106,8 @@ export default function Login() {
         <span>계정이 없으신가요? </span>
         <Link to="/createaccount">가입하기 &rarr;</Link>
       </div>
+
+      <GithubButton />
     </div>
   );
 }
