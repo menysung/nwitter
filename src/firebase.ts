@@ -16,7 +16,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
 
 // firesbase 로그인 인증 방법
-const auth = getAuth(app);
 export { auth, onAuthStateChanged };
