@@ -5,7 +5,6 @@ import reset from "styled-reset";
 import "./App.css";
 import Layout from "./components/Layout";
 import LoadingScreen from "./components/LoadingScreen";
-import ProtectedRoute from "./components/ProtectedRoute";
 import { auth } from "./firebase";
 import CreateAccount from "./routes/CreateAccount";
 import CreateUser from "./routes/CreateUser";
@@ -26,15 +25,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: (
-      <ProtectedRoute>
-        <Layout />
-      </ProtectedRoute>
-    ),
-  },
-
   {
     path: "/",
     element: <Layout />,

@@ -1,5 +1,5 @@
 import { FirebaseError } from "firebase/app";
-import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase";
@@ -7,7 +7,6 @@ import "./Login.css";
 
 export default function Login() {
   const [isLoading, setLoading] = useState(false);
-  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -15,9 +14,7 @@ export default function Login() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === "name") {
-      setName(value);
-    } else if (name === "email") {
+    if (name === "email") {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
@@ -28,18 +25,18 @@ export default function Login() {
     e.preventDefault();
     // 버튼 한 번 더 클릭하면 에러메시지 초기화
     setError("");
-    if (isLoading || name === "" || email === "" || password === "") return;
+    if (isLoading || email === "" || password === "") return;
     try {
       setLoading(true);
-      const credentials = await createUserWithEmailAndPassword(
+      const credentials = await signInWithEmailAndPassword(
         auth,
         email,
         password
       );
       console.log(credentials.user);
-      await updateProfile(credentials.user, {
-        displayName: name,
-      });
+      // await updateProfile(credentials.user, {
+      //   displayName: name,
+      // });
       navigate("/");
     } catch (e) {
       if (e instanceof FirebaseError) {

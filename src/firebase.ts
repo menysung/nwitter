@@ -12,6 +12,8 @@ const firebaseConfig = {
   storageBucket: "nwitter-7ecff.appspot.com",
   messagingSenderId: "917101860126",
   appId: "1:917101860126:web:001b555776a33be345650f",
+  // databaseURL: "<database-url>",
+  // projectId: "<project-id>",
 };
 
 // Initialize Firebase
