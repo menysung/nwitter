@@ -43,8 +43,33 @@ export default function CreateAccount() {
       navigate("/");
     } catch (e) {
       if (e instanceof FirebaseError) {
-        //console.log(e.code, e.message);
-        setError(e.message);
+        switch (e.code) {
+          case "auth/invalid-login-credentials":
+          case "auth/user-not-found":
+          case "auth/wrong-password":
+            setError("이메일 혹은 비밀번호가 일치하지 않습니다.");
+            break;
+          case "auth/email-already-in-use":
+            setError("이미 사용 중인 이메일입니다.");
+            break;
+          case "auth/weak-password":
+            setError("비밀번호는 6글자 이상이어야 합니다.");
+            break;
+          case "auth/network-request-failed":
+            setError("네트워크 연결에 실패 하였습니다.");
+            break;
+          case "auth/invalid-email":
+            setError("잘못된 이메일 형식입니다.");
+            break;
+          case "auth/internal-error":
+            setError("잘못된 요청입니다.");
+            break;
+          default:
+            setError("에러가 발생했습니다.");
+            break;
+        }
+      } else {
+        setError("에러가 발생했습니다.");
       }
     } finally {
       setLoading(false);

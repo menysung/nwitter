@@ -26,6 +26,12 @@ export default function Login() {
     // 버튼 한 번 더 클릭하면 에러메시지 초기화
     setError("");
     if (isLoading || email === "" || password === "") return;
+
+    if (password.length < 6) {
+      setError("비밀번호는 6글자 이상이어야 합니다.");
+      return;
+    }
+
     try {
       setLoading(true);
       const credentials = await signInWithEmailAndPassword(
@@ -40,8 +46,26 @@ export default function Login() {
       navigate("/");
     } catch (e) {
       if (e instanceof FirebaseError) {
-        //console.log(e.code, e.message);
-        setError(e.message);
+        switch (e.code) {
+          case "auth/invalid-email":
+            setError("잘못된 이메일 형식입니다.");
+            break;
+          case "auth/user-disabled":
+            setError("사용 중지된 계정입니다.");
+            break;
+          case "auth/user-not-found":
+          case "auth/wrong-password":
+            setError("이메일 혹은 비밀번호가 일치하지 않습니다.");
+            break;
+          case "auth/network-request-failed":
+            setError("네트워크 연결에 실패하였습니다.");
+            break;
+          default:
+            setError("에러가 발생했습니다.");
+            break;
+        }
+      } else {
+        setError("에러가 발생했습니다.");
       }
     } finally {
       setLoading(false);
