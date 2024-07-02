@@ -1,0 +1,60 @@
+.wrapper {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 420px;
+  padding: 50px 0px;
+}
+
+.title {
+  font-size: 42px;
+}
+
+.form {
+  margin-top: 50px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.input {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: none;
+  width: 100%;
+  font-size: 16px;
+}
+
+.input[type="submit"] {
+  cursor: pointer;
+}
+
+.input[type="submit"]:hover {
+  opacity: 0.8;
+}
+
+.error {
+  font-weight: 600;
+  color: tomato;
+}
+
+.switcher {
+  margin-top: 20px;
+}
+
+.switcher span {
+  color: white;
+}
+
+.switcher a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+.switcher a:hover {
+  text-decoration: underline;
+}
