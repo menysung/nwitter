@@ -14,6 +14,7 @@
 
 .form {
   margin-top: 50px;
+  margin-bottom: 10px;
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -39,4 +40,21 @@
 .error {
   font-weight: 600;
   color: tomato;
+}
+
+.switcher {
+  margin-top: 20px;
+}
+
+.switcher span {
+  color: white;
+}
+
+.switcher a {
+  color: #1d9bf0;
+  text-decoration: none;
+}
+
+.switcher a:hover {
+  text-decoration: underline;
 }
