@@ -6,7 +6,6 @@ import { auth } from "../firebase";
 import homeIcon from "../assets/home.svg";
 import logoutIcon from "../assets/logout.svg";
 import profileIcon from "../assets/profile.svg";
-import PostTweetForm from "./PostTweetForm";
 
 const Wrapper = styled.div`
   display: grid;
@@ -73,7 +72,7 @@ export default function Layout() {
             <img src={logoutIcon} alt="Logout" />
           </MenuItem>
         </Menu>
-        <PostTweetForm />
+
         <Outlet />
       </Wrapper>
     </>
