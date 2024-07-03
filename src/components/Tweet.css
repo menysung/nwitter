@@ -1,6 +1,5 @@
 .tweet-wrapper {
   display: grid;
-
   margin-bottom: 10px;
   border: 2px solid white;
   padding: 20px;
@@ -34,4 +33,16 @@
 .tweet-payload {
   margin: 10px 0px;
   font-size: 18px;
+}
+
+.delete-button {
+  background-color: tomato;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  font-size: 12px;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  border-radius: 5px;
+  cursor: pointer;
 }
