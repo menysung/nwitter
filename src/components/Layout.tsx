@@ -35,6 +35,7 @@ const MenuItem = styled.div`
   border-radius: 50%;
   img {
     width: 30px;
+    filter: invert(50%) brightness(500%);
   }
   &.log-out {
     border-color: tomato;
