@@ -1,15 +1,25 @@
-import React, { useState } from "react";
-import { auth } from "../firebase";
-import "./Profile.css"; //
+import { updateProfile } from "firebase/auth";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useState } from "react";
+import { auth, storage } from "../firebase";
+import "./Profile.css";
 
 export default function Profile() {
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
 
-  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      // TODO: Handle file upload logic
+  const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.target;
+    if (!user) return;
+    if (files && files.length === 1) {
+      const file = files[0];
+      const locationRef = ref(storage, `avatars/${user?.uid}`);
+      const result = await uploadBytes(locationRef, file);
+      const avatarUrl = await getDownloadURL(result.ref);
+      setAvatar(avatarUrl);
+      await updateProfile(user, {
+        photoURL: avatarUrl,
+      });
     }
   };
 
@@ -34,7 +44,7 @@ export default function Profile() {
         type="file"
         className="avatar-input"
         accept="image/*"
-        onChange={handleAvatarChange}
+        onChange={onAvatarChange}
       />
       <span className="name">{user?.displayName ?? "Anonymous"}</span>
     </div>
