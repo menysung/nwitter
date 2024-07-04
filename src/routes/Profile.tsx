@@ -95,7 +95,7 @@ export default function Profile() {
       />
       <span className="name">{user?.displayName ?? "익명의 유저"}</span>
 
-      {/* 이름 수정 저장 */}
+      {/* 이름 수정 및 변경 저장 */}
       {isUpdate ? (
         <>
           <input

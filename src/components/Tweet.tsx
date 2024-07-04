@@ -7,7 +7,9 @@ import "./Tweet.css";
 export default function Tweet({ username, photo, tweet, userId, id }) {
   const user = auth.currentUser;
   const [isDeleted, setIsDeleted] = useState(false);
+
   const onDelete = async () => {
+    if (!user || user.uid !== userId) return;
     const ok = confirm("정말 삭제하시겠습니까?");
     if (!ok || user?.uid !== userId) return;
     try {
