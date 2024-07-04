@@ -1,6 +1,7 @@
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { auth } from "../firebase";
+import Header from "./Header";
 
 // SVG 이미지 파일 import
 import homeIcon from "../assets/home.svg";
@@ -57,6 +58,7 @@ export default function Layout() {
   return (
     <>
       <Wrapper>
+        <Header />
         <Menu>
           <Link to="/">
             <MenuItem>

@@ -4,6 +4,9 @@
   flex-direction: column;
   gap: 20px;
   margin-bottom: auto;
+  align-items: center; /* 수직 가운데 정렬 */
+  justify-content: center; /* 수평 가운데 정렬 */
+  position: relative; /* 헤더 컴포넌트를 위한 상대 위치 설정 */
 }
 
 .avatar-upload {

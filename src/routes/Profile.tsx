@@ -68,7 +68,7 @@ export default function Profile() {
 
   useEffect(() => {
     fetchTweets();
-  }, []);
+  }, [user]);
 
   return (
     <div className="wrapper">
