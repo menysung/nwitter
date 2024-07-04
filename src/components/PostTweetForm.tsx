@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { auth, db, storage } from "../firebase";
 import "./PostTweetForm.css";
 
-const PostTweetForm: React.FC = () => {
+export default function PostTweetForm() {
   const [isLoading, setLoading] = useState(false);
   const [tweet, setTweet] = useState("");
   const [file, setFile] = useState<File | null>(null);
@@ -87,6 +87,4 @@ const PostTweetForm: React.FC = () => {
       />
     </form>
   );
-};
-
-export default PostTweetForm;
+}

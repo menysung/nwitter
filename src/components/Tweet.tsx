@@ -1,11 +1,9 @@
-import { deleteDoc, doc } from "firebase/firestore"; // Firestore에서 필요한 함수들만 import
-import { deleteObject, ref } from "firebase/storage"; // Storage에서 필요한 함수들만 import
-import React from "react";
+import { deleteDoc, doc } from "firebase/firestore";
+import { deleteObject, ref } from "firebase/storage";
 import { auth, db, storage } from "../firebase";
-import { ITweet } from "./Timeline";
-import "./Tweet.css"; // CSS 파일을 import 합니다
+import "./Tweet.css";
 
-const Tweet: React.FC<ITweet> = ({ username, photo, tweet, userId, id }) => {
+export default function Tweet({ username, photo, tweet, userId, id }) {
   const user = auth.currentUser;
 
   const onDelete = async () => {
@@ -22,7 +20,7 @@ const Tweet: React.FC<ITweet> = ({ username, photo, tweet, userId, id }) => {
         await deleteObject(photoRef);
       }
     } catch (error) {
-      console.error("Error deleting tweet:", error);
+      console.log(error);
     }
   };
 
@@ -42,6 +40,4 @@ const Tweet: React.FC<ITweet> = ({ username, photo, tweet, userId, id }) => {
       </div>
     </div>
   );
-};
-
-export default Tweet;
+}

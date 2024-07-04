@@ -4,7 +4,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GithubButton from "../components/GithubButton";
 import { auth } from "../firebase";
-import "./CreateAccount.css";
 
 export default function CreateAccount() {
   const [isLoading, setLoading] = useState(false);

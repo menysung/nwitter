@@ -1,5 +1,4 @@
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth"; // GithubAuthProvider와 signInWithPopup를 firebase/auth에서 가져옴
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import { styled } from "styled-components";
 import { auth } from "../firebase"; // auth만 가져옴
@@ -24,30 +23,23 @@ const Logo = styled.img`
   height: 25px;
 `;
 
-interface GithubButtonProps {
-  onClick?: () => void;
-}
-
-const GithubButton: React.FC<GithubButtonProps> = ({ onClick }) => {
+export default function GithubButton() {
   const navigate = useNavigate();
-
-  const handleGithubSignIn = async () => {
+  const onClick = async () => {
     try {
-      const provider = new GithubAuthProvider(); // GithubAuthProvider 생성
-      const result = await signInWithPopup(auth, provider); // signInWithPopup 함수로 GitHub 인증 수행
-      console.log(result);
-      navigate("/"); // 로그인 성공 후 리다이렉트할 경로
+      //깃허브인증 제공 객체
+      const provider = new GithubAuthProvider();
+      //팝업으로 깃허브인증받기
+      await signInWithPopup(auth, provider);
+      navigate("/");
     } catch (error) {
       console.error(error);
     }
   };
-
   return (
-    <Button onClick={handleGithubSignIn}>
+    <Button onClick={onClick}>
       <Logo src="/github-logo.svg" />
       Continue with Github
     </Button>
   );
-};
-
-export default GithubButton;
+}

@@ -8,7 +8,7 @@ import {
 } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { db } from "../firebase";
-import "./Timeline.css"; // CSS 파일을 import 합니다
+import "./Timeline.css";
 import Tweet from "./Tweet";
 
 export interface ITweet {
