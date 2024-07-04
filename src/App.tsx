@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   ${reset}
   * {
     box-sizing: border-box;
+    
   }
   body {
     background-color: black;

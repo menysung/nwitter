@@ -57,8 +57,8 @@ export default function Layout() {
   };
   return (
     <>
+      <Header />
       <Wrapper>
-        <Header />
         <Menu>
           <Link to="/">
             <MenuItem>

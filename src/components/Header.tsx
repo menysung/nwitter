@@ -8,11 +8,12 @@ export default function Header() {
       <style>
         {`
           .header {
-            position: absolute;
+            position: fixed;
             top: 10px;
             right: 20px;
             font-size: 18px;
             color: #fff;
+           
           }
         `}
       </style>
