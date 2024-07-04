@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GithubButton from "../components/GithubButton";
 import { auth } from "../firebase";
+import "./CreateAccount.css";
 
 export default function CreateAccount() {
   const [isLoading, setLoading] = useState(false);
@@ -78,7 +79,7 @@ export default function CreateAccount() {
 
   return (
     <div className="wrapper">
-      <h1 className="title">Join 𝕏</h1>
+      <h1 className="title">Create Account 𝕏</h1>
       <form className="form" onSubmit={onSubmit}>
         <input
           onChange={onChange}
