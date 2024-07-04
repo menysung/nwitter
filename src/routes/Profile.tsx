@@ -17,7 +17,18 @@ export default function Profile() {
   const user = auth.currentUser;
   const [avatar, setAvatar] = useState(user?.photoURL);
   const [tweets, setTweets] = useState([]);
-  const [isUpdate, setIsUpdate] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false); //프로필 이름 수정
+  const [name, setName] = useState("");
+
+  const updateName = async () => {
+    if (!name || name.trim().length < 2) return;
+    if (!user) return;
+    await updateProfile(user, {
+      displayName: name,
+    });
+    setIsUpdate(false);
+  };
+
   const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const { files } = e.target;
     if (!user) return;
@@ -83,6 +94,21 @@ export default function Profile() {
         onChange={onAvatarChange}
       />
       <span className="name">{user?.displayName ?? "익명의 유저"}</span>
+
+      {/* 이름 수정 저장 */}
+      {isUpdate ? (
+        <>
+          <input
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="새이름..."
+          />
+          <button onClick={updateName}>저장</button>
+        </>
+      ) : (
+        <button onClick={() => setIsUpdate(true)}>수정</button>
+      )}
+
       <div className="tweets-container">
         {tweets.map((tweet) => (
           <Tweet key={tweet.id} {...tweet} />
