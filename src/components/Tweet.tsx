@@ -4,7 +4,22 @@ import { useState } from "react";
 import { auth, db, storage } from "../firebase";
 import "./Tweet.css";
 
-export default function Tweet({ username, photo, tweet, userId, id }) {
+// ITweet 인터페이스 정의
+interface ITweetProps {
+  username: string;
+  photo?: string;
+  tweet: string;
+  userId: string;
+  id: string;
+}
+
+export default function Tweet({
+  username,
+  photo,
+  tweet,
+  userId,
+  id,
+}: ITweetProps) {
   const user = auth.currentUser;
   const [isDeleted, setIsDeleted] = useState(false);
 
