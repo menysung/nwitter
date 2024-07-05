@@ -1,18 +1,18 @@
-.wrapper {
+.login-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  width: auto;
-  height: 50%;
+  width: 100%;
+  height: 100%;
 }
 
-.title {
+.login-title {
   font-size: 42px;
 }
 
-.form {
+.login-form {
   margin-top: 50px;
   margin-bottom: 10px;
   display: flex;

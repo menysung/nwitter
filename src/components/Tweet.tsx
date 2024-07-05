@@ -35,15 +35,15 @@ export default function Tweet({ username, photo, tweet, userId, id }) {
           <div className="tweet-column">
             <span className="tweet-username">{username}</span>
             <p className="tweet-payload">{tweet}</p>
-            {user?.uid === userId && (
-              <button className="delete-button" onClick={onDelete}>
-                Delete
-              </button>
-            )}
           </div>
           <div className="tweet-column">
             {photo && <img className="tweet-photo" src={photo} alt="Tweet" />}
           </div>
+          {user?.uid === userId && (
+            <button className="delete-button" onClick={onDelete}>
+              Delete
+            </button>
+          )}
         </div>
       )}
     </>

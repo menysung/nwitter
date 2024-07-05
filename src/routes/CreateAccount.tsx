@@ -78,9 +78,9 @@ export default function CreateAccount() {
   };
 
   return (
-    <div className="wrapper">
-      <h1 className="title">Create Account 𝕏</h1>
-      <form className="form" onSubmit={onSubmit}>
+    <div className="create-wrapper">
+      <h1 className="create-title">Create Account 𝕏</h1>
+      <form className="create-form" onSubmit={onSubmit}>
         <input
           onChange={onChange}
           name="name"

@@ -69,9 +69,9 @@ export default function Login() {
   };
 
   return (
-    <div className="wrapper">
-      <h1 className="title">Login 𝕏</h1>
-      <form className="form" onSubmit={onSubmit}>
+    <div className="login-wrapper">
+      <h1 className="login-title">Login 𝕏</h1>
+      <form className="login-form" onSubmit={onSubmit}>
         <input
           onChange={onChange}
           name="email"

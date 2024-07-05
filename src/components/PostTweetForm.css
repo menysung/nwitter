@@ -1,11 +1,13 @@
-.form {
+.tweet-form {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  margin-right: 10px;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto; /* 폼을 수평으로 가운데 정렬 */
 }
 
-.textarea {
+.tweet-textarea {
   border: 2px solid white;
   padding: 20px;
   border-radius: 20px;
@@ -31,7 +33,7 @@
   padding: 10px 0px;
   color: #1d9bf0;
   text-align: center;
-  border-radius: 20px;
+  border-radius: 5px;
   border: 1px solid #1d9bf0;
   font-size: 14px;
   font-weight: 600;
@@ -47,7 +49,7 @@
   color: white;
   border: none;
   padding: 10px 0px;
-  border-radius: 20px;
+  border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
 }

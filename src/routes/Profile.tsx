@@ -71,7 +71,7 @@ export default function Profile() {
   }, [user]);
 
   return (
-    <div className="wrapper">
+    <div className="profile-wrapper">
       <label htmlFor="avatar" className="avatar-upload">
         {avatar ? (
           <img src={avatar} className="avatar-img" alt="Avatar" />

@@ -12,17 +12,23 @@ const Wrapper = styled.div`
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 4fr;
-  height: 100%;
+  height: 1005;
   padding: 50px 0px;
   width: 100%;
   max-width: 860px;
+  margin: 0 auto; /* 수평으로 가운데 정렬 */
+  box-sizing: border-box; /* 패딩을 포함하여 크기 계산 */
 `;
 
 const Menu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
   gap: 20px;
+  justify-content: center; /* 중앙에 배치 */
+  height: 100%; /* 부모의 높이 전체 사용 */
+  box-sizing: border-box;
 `;
 
 const MenuItem = styled.div`

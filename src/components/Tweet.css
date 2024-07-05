@@ -1,29 +1,10 @@
-/* .tweet-wrapper {
-  display: grid;
-  margin-bottom: 10px;
-  border: 2px solid white;
-  padding: 20px;
-  border-radius: 20px;
-  font-size: 16px;
-  color: white;
-  background-color: black;
-  width: 100%;
-  resize: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-} */
-
 .tweet-wrapper {
-  border: 2px solid white;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   padding: 20px;
-  border-radius: 20px;
-  font-size: 16px;
-  color: white;
-  background-color: black;
-  width: 100%;
-  resize: none;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+  margin-bottom: 10px;
 }
 
 .tweet-column {
@@ -51,7 +32,8 @@
 .delete-button {
   background-color: tomato;
   color: white;
-  font-weight: 600;
+  margin-top: 10px;
+  width: 50%;
   border: 0;
   font-size: 12px;
   padding: 5px 10px;

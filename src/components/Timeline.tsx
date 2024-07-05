@@ -53,7 +53,7 @@ export default function Timeline() {
   }, []);
 
   return (
-    <div className="wrapper">
+    <div className="timeline-wrapper">
       {tweets.map((tweet) => (
         <Tweet key={tweet.id} {...tweet} />
       ))}

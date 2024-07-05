@@ -61,9 +61,9 @@ export default function PostTweetForm() {
   };
 
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className="tweet-form" onSubmit={onSubmit}>
       <textarea
-        className="textarea"
+        className="tweet-textarea"
         rows={5}
         maxLength={180}
         onChange={onChange}

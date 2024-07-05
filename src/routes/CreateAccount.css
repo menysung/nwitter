@@ -1,18 +1,18 @@
-.wrapper {
+.create-wrapper {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 20px;
-  width: auto;
+  width: 100%;
   height: 100%;
 }
 
-.title {
+.create-title {
   font-size: 42px;
 }
 
-.form {
+.create-form {
   margin-top: 50px;
   margin-bottom: 10px;
   display: flex;
