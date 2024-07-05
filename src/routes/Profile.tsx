@@ -13,62 +13,85 @@ import Tweet from "../components/Tweet";
 import { auth, db, storage } from "../firebase";
 import "./Profile.css";
 
+interface Tweet {
+  id: string;
+  photo?: string;
+  tweet: string;
+  userId: string;
+  username: string;
+  createdAt: number;
+}
+
 export default function Profile() {
   const user = auth.currentUser;
-  const [avatar, setAvatar] = useState(user?.photoURL);
-  const [tweets, setTweets] = useState([]);
-  const [isUpdate, setIsUpdate] = useState(false); //프로필 이름 수정
+  const [avatar, setAvatar] = useState<string | null>(user?.photoURL || null);
+  const [tweets, setTweets] = useState<Tweet[]>([]);
+  const [isUpdate, setIsUpdate] = useState(false);
   const [name, setName] = useState("");
-
-  const updateName = async () => {
-    if (!name || name.trim().length < 2) return;
-    if (!user) return;
-    await updateProfile(user, {
-      displayName: name,
-    });
-    setIsUpdate(false);
-  };
-
-  const onAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    if (!user) return;
-    if (files && files.length === 1) {
-      const file = files[0];
-      const locationRef = ref(storage, `avatars/${user?.uid}`);
-      const result = await uploadBytes(locationRef, file);
-      const avatarUrl = await getDownloadURL(result.ref);
-      setAvatar(avatarUrl);
-      await updateProfile(user, {
-        photoURL: avatarUrl,
-      });
-    }
-  };
-
-  const fetchTweets = async () => {
-    const q = query(
-      collection(db, "tweets"),
-      where("userId", "==", user?.uid),
-      orderBy("createdAt", "desc"),
-      limit(25)
-    );
-    const snapshot = await getDocs(q);
-    const tweets = snapshot.docs.map((doc) => {
-      const { tweet, createdAt, userId, username, photo } = doc.data();
-      return {
-        tweet,
-        createdAt,
-        userId,
-        username,
-        photo,
-        id: doc.id,
-      };
-    });
-    setTweets(tweets);
-  };
 
   useEffect(() => {
     fetchTweets();
   }, [user]);
+
+  const fetchTweets = async () => {
+    try {
+      const q = query(
+        collection(db, "tweets"),
+        where("userId", "==", user?.uid),
+        orderBy("createdAt", "desc"),
+        limit(25)
+      );
+      const querySnapshot = await getDocs(q);
+      const fetchedTweets: Tweet[] = [];
+      querySnapshot.forEach((doc) => {
+        const { tweet, createdAt, userId, username, photo } = doc.data();
+        fetchedTweets.push({
+          tweet,
+          createdAt,
+          userId,
+          username,
+          photo,
+          id: doc.id,
+        });
+      });
+      setTweets(fetchedTweets);
+    } catch (error) {
+      console.error("Error fetching tweets: ", error);
+    }
+  };
+
+  const updateName = async () => {
+    try {
+      if (!name || name.trim().length < 2) {
+        console.log("이름은 최소 2자 이상이어야 합니다.");
+        return;
+      }
+      if (!user) {
+        console.log("사용자가 로그인하지 않았습니다.");
+        return;
+      }
+      await updateProfile(user, { displayName: name });
+      setIsUpdate(false);
+    } catch (error) {
+      console.error("Error updating name: ", error);
+    }
+  };
+
+  const handleAvatarChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    try {
+      const file = e.target.files?.[0];
+      if (!file || !user) return;
+
+      const storageRef = ref(storage, `avatars/${user.uid}`);
+      const uploadTask = await uploadBytes(storageRef, file);
+      const avatarUrl = await getDownloadURL(uploadTask.ref);
+
+      setAvatar(avatarUrl);
+      await updateProfile(user, { photoURL: avatarUrl });
+    } catch (error) {
+      console.error("Error updating avatar: ", error);
+    }
+  };
 
   return (
     <div className="profile-wrapper">
@@ -91,17 +114,17 @@ export default function Profile() {
         type="file"
         className="avatar-input"
         accept="image/*"
-        onChange={onAvatarChange}
+        onChange={handleAvatarChange}
       />
-      <span className="name">{user?.displayName ?? "익명의 유저"}</span>
+      <span className="name">{user?.displayName || "익명의 유저"}</span>
 
-      {/* 이름 수정 및 변경 저장 */}
       {isUpdate ? (
         <>
           <input
-            onChange={(e) => setName(e.target.value)}
             type="text"
             placeholder="새이름..."
+            value={name}
+            onChange={(e) => setName(e.target.value)}
           />
           <button onClick={updateName}>저장</button>
         </>

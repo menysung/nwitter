@@ -4,13 +4,13 @@ import { useState } from "react";
 import { auth, db, storage } from "../firebase";
 import "./Tweet.css";
 
-// ITweet 인터페이스 정의
 interface Tweet {
-  username: string;
+  id: string;
   photo?: string;
   tweet: string;
   userId: string;
-  id: string;
+  username: string;
+  createdAt: number;
 }
 
 export default function Tweet({ username, photo, tweet, userId, id }: Tweet) {
