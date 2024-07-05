@@ -11,7 +11,7 @@ import { db } from "../firebase";
 import "./Timeline.css";
 import Tweet from "./Tweet";
 
-export interface ITweet {
+interface Tweet {
   id: string;
   photo?: string;
   tweet: string;
@@ -21,7 +21,7 @@ export interface ITweet {
 }
 
 export default function Timeline() {
-  const [tweets, setTweets] = useState<ITweet[]>([]);
+  const [tweets, setTweets] = useState<Tweet[]>([]);
 
   useEffect(() => {
     let unsubscribe: Unsubscribe | null = null;

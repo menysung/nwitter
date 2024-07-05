@@ -5,7 +5,7 @@ import { auth, db, storage } from "../firebase";
 import "./Tweet.css";
 
 // ITweet 인터페이스 정의
-interface ITweetProps {
+interface Tweet {
   username: string;
   photo?: string;
   tweet: string;
@@ -13,13 +13,7 @@ interface ITweetProps {
   id: string;
 }
 
-export default function Tweet({
-  username,
-  photo,
-  tweet,
-  userId,
-  id,
-}: ITweetProps) {
+export default function Tweet({ username, photo, tweet, userId, id }: Tweet) {
   const user = auth.currentUser;
   const [isDeleted, setIsDeleted] = useState(false);
 
