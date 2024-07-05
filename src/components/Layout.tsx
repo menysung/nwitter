@@ -12,8 +12,8 @@ const Wrapper = styled.div`
   display: grid;
   gap: 20px;
   grid-template-columns: 1fr 4fr;
-  height: 1005;
-  padding: 50px 0px;
+  height: calc(100vh - 50px); /* 상단 여백을 고려한 높이 설정 */
+  padding-top: 50px;
   width: 100%;
   max-width: 860px;
   margin: 0 auto; /* 수평으로 가운데 정렬 */
@@ -24,10 +24,9 @@ const Menu = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
   gap: 20px;
-  justify-content: center; /* 중앙에 배치 */
-  height: 100%; /* 부모의 높이 전체 사용 */
+  justify-content: flet-start;
+
   box-sizing: border-box;
 `;
 
